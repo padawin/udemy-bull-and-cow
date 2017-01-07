@@ -1,17 +1,10 @@
 #include <iostream>
 #include <string>
 
-int main() {
-	constexpr unsigned int WORLD_LENGTH = 7;
-	constexpr unsigned int MAX_TURNS = 15;
+constexpr unsigned int WORLD_LENGTH = 7;
+constexpr unsigned int MAX_TURNS = 15;
 
-	unsigned int currentTurn = 1;
-	unsigned int nbLettersFound = 0;
-	std::string playerGuessChar = "";
-	std::string playerGuessPosChar = "";
-	unsigned int lengthPlayerChar = 0;
-	unsigned int playerGuessPos = 0;
-
+void welcome() {
 	std::cout << "Welcome to Bulls and Cows" << std::endl;
 	std::cout << "I am thinking of a word of " << WORLD_LENGTH << " letters." << std::endl;
 	std::cout << "You have " << MAX_TURNS << " turns to find it." << std::endl;
@@ -20,27 +13,59 @@ int main() {
 	std::cout << "- COW if the letter is correct but not the position," << std::endl;
 	std::cout << "- SNAP if neither the letter not the position are correct." << std::endl;
 	std::cout << std::endl;
+}
 
-	// get user's guess
+void readString(std::string &output, const char* prompt, const char* errorMessage, const unsigned int maxLength) {
+	unsigned int lengthPlayerChar = 0;
 	do {
-		std::cout << "Which letter? ";
-		std::getline(std::cin, playerGuessChar);
-		lengthPlayerChar = playerGuessChar.length();
+		std::cout << prompt;
+		std::getline(std::cin, output);
+		lengthPlayerChar = output.length();
 		if (lengthPlayerChar == 1) {
 			break;
 		}
-		std::cout << "A single character is expected" << std::endl;
+		std::cout << errorMessage << std::endl;
 	} while (true);
+}
 
+void readInt(unsigned int &output, const char* prompt, const char* errorMessage, const unsigned int min, const unsigned int max) {
 	do {
-		std::cout << "Which position? ";
-		std::getline(std::cin, playerGuessPosChar);
-		playerGuessPos = atoi(playerGuessPosChar.c_str());
-		if (playerGuessPos >= 1 && playerGuessPos <= WORLD_LENGTH) {
+		std::cout << prompt;
+		std::string tmp;
+		std::getline(std::cin, tmp);
+		output = atoi(tmp.c_str());
+		if (output >= 1 && output <= WORLD_LENGTH) {
 			break;
 		}
-		std::cout << "A number between 1 and " << WORLD_LENGTH << " is expected" << std::endl;
+		std::cout << errorMessage << std::endl;
 	} while (true);
+}
+
+int main() {
+
+	unsigned int currentTurn = 1;
+	unsigned int nbLettersFound = 0;
+	std::string playerGuessChar = "";
+	unsigned int playerGuessPos = 0;
+
+	welcome();
+
+	// get user's guess
+	readString(
+		playerGuessChar,
+		"Which letter? ",
+		"A single character is expected",
+		1
+	);
+	char errorPosition[40];
+	sprintf_s(errorPosition, 40, "A number between 1 and %d is expected", WORLD_LENGTH);
+	readInt(
+		playerGuessPos
+		"Which position? ",
+		errorPosition,
+		1,
+		WORLD_LENGTH
+	);
 
 	std::cout << "your choice is: " << playerGuessChar << " at the position " << playerGuessPos << std::endl;
 	return 0;
