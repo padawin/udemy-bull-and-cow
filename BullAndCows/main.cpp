@@ -4,6 +4,14 @@
 int main() {
 	constexpr unsigned int WORLD_LENGTH = 7;
 	constexpr unsigned int MAX_TURNS = 15;
+
+	unsigned int currentTurn = 1;
+	unsigned int nbLettersFound = 0;
+	std::string playerGuessChar = "";
+	std::string playerGuessPosChar = "";
+	unsigned int lengthPlayerChar = 0;
+	unsigned int playerGuessPos = 0;
+
 	std::cout << "Welcome to Bulls and Cows" << std::endl;
 	std::cout << "I am thinking of a word of " << WORLD_LENGTH << " letters." << std::endl;
 	std::cout << "You have " << MAX_TURNS << " turns to find it." << std::endl;
@@ -13,14 +21,7 @@ int main() {
 	std::cout << "- SNAP if neither the letter not the position are correct." << std::endl;
 	std::cout << std::endl;
 
-	unsigned int currentTurn = 1;
-	unsigned int nbLettersFound = 0;
 	// get user's guess
-	std::string playerGuessChar = "";
-	std::string playerGuessPosChar = "";
-	unsigned int lengthPlayerChar = 0;
-	unsigned int playerGuessPos = 0;
-
 	do {
 		std::cout << "Which letter? ";
 		std::cin >> playerGuessChar;
