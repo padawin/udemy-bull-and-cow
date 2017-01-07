@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 int main() {
 	constexpr unsigned int WORLD_LENGTH = 7;
@@ -12,5 +13,11 @@ int main() {
 	std::cout << "- SNAP if neither the letter not the position are correct." << std::endl;
 	std::cout << std::endl;
 
+	unsigned int currentTurn = 1;
+	unsigned int nbLettersFound = 0;
+	// get user's guess
+	std::string playerGuess;
+	std::cin >> playerGuess;
+	std::cout << "your choice is: " << playerGuess << std::endl;
 	return 0;
 }
