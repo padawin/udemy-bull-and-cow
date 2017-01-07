@@ -16,9 +16,15 @@ int main() {
 	unsigned int currentTurn = 1;
 	unsigned int nbLettersFound = 0;
 	// get user's guess
-	std::string playerGuess;
-	std::cout << "Which letter and which position (format: letter position)? ";
-	std::cin >> playerGuess;
-	std::cout << "your choice is: " << playerGuess << std::endl;
+	std::string playerGuessChar;
+	unsigned int playerGuessPos;
+
+	std::cout << "Which letter? ";
+	std::cin >> playerGuessChar;
+
+	std::cout << "Which position? ";
+	std::cin >> playerGuessPos;
+
+	std::cout << "your choice is: " << playerGuessChar << " at the position " << playerGuessPos << std::endl;
 	return 0;
 }
