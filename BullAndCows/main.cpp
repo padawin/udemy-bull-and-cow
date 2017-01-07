@@ -16,10 +16,10 @@ int main() {
 	unsigned int currentTurn = 1;
 	unsigned int nbLettersFound = 0;
 	// get user's guess
-	std::string playerGuessChar;
-	std::string playerGuessPosChar;
-	unsigned int lengthPlayerChar;
-	unsigned int playerGuessPos;
+	std::string playerGuessChar = "";
+	std::string playerGuessPosChar = "";
+	unsigned int lengthPlayerChar = 0;
+	unsigned int playerGuessPos = 0;
 
 	do {
 		std::cout << "Which letter? ";
