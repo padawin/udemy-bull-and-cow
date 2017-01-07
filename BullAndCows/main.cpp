@@ -20,6 +20,10 @@ void readGuess(std::string &output, const char* prompt) {
 	std::getline(std::cin, output);
 }
 
+void printGuessResult(std::string playerGuessChar) {
+	std::cout << "your guess is: " << playerGuessChar << std::endl;
+}
+
 int main() {
 
 	unsigned int currentTurn = 1;
@@ -33,7 +37,6 @@ int main() {
 		playerGuessChar,
 		"What is your guess? "
 	);
-
-	std::cout << "your guess is: " << playerGuessChar << std::endl;
+	printGuessResult(playerGuessChar);
 	return 0;
 }
