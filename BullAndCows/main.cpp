@@ -24,7 +24,7 @@ int main() {
 	// get user's guess
 	do {
 		std::cout << "Which letter? ";
-		std::cin >> playerGuessChar;
+		std::getline(std::cin, playerGuessChar);
 		lengthPlayerChar = playerGuessChar.length();
 		if (lengthPlayerChar == 1) {
 			break;
@@ -34,7 +34,7 @@ int main() {
 
 	do {
 		std::cout << "Which position? ";
-		std::cin >> playerGuessPosChar;
+		std::getline(std::cin, playerGuessPosChar);
 		playerGuessPos = atoi(playerGuessPosChar.c_str());
 		if (playerGuessPos >= 1 && playerGuessPos <= WORLD_LENGTH) {
 			break;
