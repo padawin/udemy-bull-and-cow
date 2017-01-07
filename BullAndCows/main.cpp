@@ -17,13 +17,29 @@ int main() {
 	unsigned int nbLettersFound = 0;
 	// get user's guess
 	std::string playerGuessChar;
+	std::string playerGuessPosChar;
+	unsigned int lengthPlayerChar;
 	unsigned int playerGuessPos;
 
-	std::cout << "Which letter? ";
-	std::cin >> playerGuessChar;
+	do {
+		std::cout << "Which letter? ";
+		std::cin >> playerGuessChar;
+		lengthPlayerChar = playerGuessChar.length();
+		if (lengthPlayerChar == 1) {
+			break;
+		}
+		std::cout << "A single character is expected" << std::endl;
+	} while (true);
 
-	std::cout << "Which position? ";
-	std::cin >> playerGuessPos;
+	do {
+		std::cout << "Which position? ";
+		std::cin >> playerGuessPosChar;
+		playerGuessPos = atoi(playerGuessPosChar.c_str());
+		if (playerGuessPos >= 1 && playerGuessPos <= WORLD_LENGTH) {
+			break;
+		}
+		std::cout << "A number between 1 and " << WORLD_LENGTH << " is expected" << std::endl;
+	} while (true);
 
 	std::cout << "your choice is: " << playerGuessChar << " at the position " << playerGuessPos << std::endl;
 	return 0;
