@@ -17,6 +17,7 @@ int main() {
 	unsigned int nbLettersFound = 0;
 	// get user's guess
 	std::string playerGuess;
+	std::cout << "Which letter and which position (format: letter position)? ";
 	std::cin >> playerGuess;
 	std::cout << "your choice is: " << playerGuess << std::endl;
 	return 0;
