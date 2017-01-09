@@ -47,9 +47,7 @@ void play() {
 }
 
 int main() {
-
 	welcome();
-
 	play();
 	return 0;
 }
