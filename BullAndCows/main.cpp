@@ -2,9 +2,10 @@
 #include <string>
 
 void welcome();
+std::string generateWord();
 void readGuess(std::string &output, const char* prompt);
 void printGuessResult(std::string playerGuessChar);
-void play();
+void play(std::string wordToFind);
 
 constexpr unsigned int WORLD_LENGTH = 7;
 constexpr unsigned int MAX_TURNS = 15;
@@ -29,7 +30,7 @@ void printGuessResult(std::string playerGuessChar) {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
 }
 
-void play() {
+void play(std::string wordToFind) {
 	unsigned int currentTurn = 1;
 	unsigned int nbLettersFound = 0;
 	std::string playerGuessChar = "";
@@ -48,6 +49,11 @@ void play() {
 
 int main() {
 	welcome();
-	play();
+	std::string wordToFind = generateWord();
+	play(wordToFind);
 	return 0;
+}
+
+std::string generateWord() {
+	return "jukebox";
 }
