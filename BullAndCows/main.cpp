@@ -21,7 +21,7 @@ void readGuess(std::string &output, const char* prompt) {
 }
 
 void printGuessResult(std::string playerGuessChar) {
-	std::cout << "your guess is: " << playerGuessChar << std::endl;
+	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
 }
 
 int main() {
