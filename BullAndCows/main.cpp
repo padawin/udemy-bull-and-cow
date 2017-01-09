@@ -3,7 +3,7 @@
 
 void welcome();
 std::string generateWord();
-void readGuess(std::string &output, const char* prompt);
+void readString(std::string &output, const char* prompt);
 void printGuessResult(std::string playerGuessChar);
 void play(std::string wordToFind);
 int interpretGuess(std::string guess, std::string wordToFind);
@@ -22,7 +22,7 @@ void welcome() {
 	std::cout << std::endl;
 }
 
-void readGuess(std::string &output, const char* prompt) {
+void readString(std::string &output, const char* prompt) {
 	std::cout << prompt;
 	std::getline(std::cin, output);
 }
@@ -38,7 +38,7 @@ void play(std::string wordToFind) {
 
 	while (nbLettersFound < WORLD_LENGTH && currentTurn <= MAX_TURNS) {
 		// get user's guess
-		readGuess(
+		readString(
 			playerGuessChar,
 			"What is your guess? "
 		);
