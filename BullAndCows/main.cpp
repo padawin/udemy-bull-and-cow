@@ -6,6 +6,7 @@ std::string generateWord();
 void readGuess(std::string &output, const char* prompt);
 void printGuessResult(std::string playerGuessChar);
 void play(std::string wordToFind);
+int interpretGuess(std::string guess, std::string wordToFind);
 
 constexpr unsigned int WORLD_LENGTH = 7;
 constexpr unsigned int MAX_TURNS = 15;
@@ -41,6 +42,8 @@ void play(std::string wordToFind) {
 			playerGuessChar,
 			"What is your guess? "
 		);
+
+		nbLettersFound = interpretGuess(playerGuessChar, wordToFind);
 		printGuessResult(playerGuessChar);
 
 		++currentTurn;
@@ -56,4 +59,8 @@ int main() {
 
 std::string generateWord() {
 	return "jukebox";
+}
+
+int interpretGuess(std::string guess, std::string wordToFind) {
+	return guess == wordToFind ? wordToFind.length() : 0;
 }
