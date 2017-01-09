@@ -24,13 +24,10 @@ void printGuessResult(std::string playerGuessChar) {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
 }
 
-int main() {
-
+void play() {
 	unsigned int currentTurn = 1;
 	unsigned int nbLettersFound = 0;
 	std::string playerGuessChar = "";
-
-	welcome();
 
 	while (nbLettersFound < WORLD_LENGTH && currentTurn <= MAX_TURNS) {
 		// get user's guess
@@ -42,5 +39,12 @@ int main() {
 
 		++currentTurn;
 	}
+}
+
+int main() {
+
+	welcome();
+
+	play();
 	return 0;
 }
