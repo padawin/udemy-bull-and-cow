@@ -1,6 +1,11 @@
 #include <iostream>
 #include <string>
 
+void welcome();
+void readGuess(std::string &output, const char* prompt);
+void printGuessResult(std::string playerGuessChar);
+void play();
+
 constexpr unsigned int WORLD_LENGTH = 7;
 constexpr unsigned int MAX_TURNS = 15;
 
