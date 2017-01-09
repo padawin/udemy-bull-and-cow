@@ -32,11 +32,15 @@ int main() {
 
 	welcome();
 
-	// get user's guess
-	readGuess(
-		playerGuessChar,
-		"What is your guess? "
-	);
-	printGuessResult(playerGuessChar);
+	while (nbLettersFound < WORLD_LENGTH && currentTurn <= MAX_TURNS) {
+		// get user's guess
+		readGuess(
+			playerGuessChar,
+			"What is your guess? "
+		);
+		printGuessResult(playerGuessChar);
+
+		++currentTurn;
+	}
 	return 0;
 }
