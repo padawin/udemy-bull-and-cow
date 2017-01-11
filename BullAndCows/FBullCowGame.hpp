@@ -10,7 +10,7 @@ class FBullCowGame {
 	void reset();
 	unsigned int getCurrentTry();
 	unsigned int getMaxTries();
-	bool checkGuess(std::string guess);
+	int checkGuess(std::string guess);
 	void getGuessResult();
 
 	private:

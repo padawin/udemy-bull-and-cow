@@ -31,6 +31,6 @@ unsigned int FBullCowGame::getMaxTries() {
 	return m_iMaxTries;
 }
 
-bool FBullCowGame::checkGuess(std::string guess) {
-	return false;
+int FBullCowGame::checkGuess(std::string guess) {
+	return guess == m_sWordToFind ? m_iMaxTries : 0;
 }
