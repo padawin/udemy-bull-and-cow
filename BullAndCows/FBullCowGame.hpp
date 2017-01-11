@@ -8,8 +8,8 @@ class FBullCowGame {
 	FBullCowGame();
 	void welcome();
 	void reset();
-	int getCurrentTry();
-	int getMaxTries();
+	unsigned int getCurrentTry();
+	unsigned int getMaxTries();
 	bool checkGuess(std::string guess);
 	void getGuessResult();
 

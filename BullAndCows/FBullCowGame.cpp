@@ -23,11 +23,11 @@ void FBullCowGame::reset() {
 	m_iLengthWord = m_sWordToFind.length();
 }
 
-int FBullCowGame::getCurrentTry() {
+unsigned int FBullCowGame::getCurrentTry() {
 	return m_iCurrentTry;
 }
 
-int FBullCowGame::getMaxTries() {
+unsigned int FBullCowGame::getMaxTries() {
 	return m_iMaxTries;
 }
 
