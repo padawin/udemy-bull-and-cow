@@ -14,6 +14,8 @@ class FBullCowGame {
 	void getGuessResult();
 
 	private:
+	std::string m_sWordToFind;
+	unsigned int m_iLengthWord;
 	unsigned int m_iMaxTries;
 	unsigned int m_iCurrentTry;
 };
