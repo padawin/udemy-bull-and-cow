@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "FBullCowGame.hpp"
 
 void welcome();
 std::string generateWord();
@@ -52,6 +53,7 @@ void play(std::string wordToFind) {
 }
 
 int main() {
+	FBullCowGame game;
 	welcome();
 	bool continuePlaying = true;
 	do {
