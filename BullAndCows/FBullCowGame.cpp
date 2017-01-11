@@ -1,6 +1,9 @@
 #include "FBullCowGame.hpp"
 #include <iostream>
 
+unsigned int FBullCowGame::getCurrentTry() { return m_iCurrentTry; }
+unsigned int FBullCowGame::getMaxTries() { return m_iMaxTries; }
+
 FBullCowGame::FBullCowGame() {
 	reset();
 }
@@ -48,14 +51,6 @@ void FBullCowGame::readString(std::string &output, const char* prompt) {
 
 void FBullCowGame::printGuessResult(std::string playerGuessChar) {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
-}
-
-unsigned int FBullCowGame::getCurrentTry() {
-	return m_iCurrentTry;
-}
-
-unsigned int FBullCowGame::getMaxTries() {
-	return m_iMaxTries;
 }
 
 int FBullCowGame::checkGuess(std::string guess) {
