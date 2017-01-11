@@ -23,6 +23,33 @@ void FBullCowGame::reset() {
 	m_iLengthWord = m_sWordToFind.length();
 }
 
+void FBullCowGame::play() {
+	unsigned int nbLettersFound = 0;
+	std::string playerGuessChar = "";
+
+	while (nbLettersFound < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
+		// get user's guess
+		readString(
+			playerGuessChar,
+			"What is your guess? "
+		);
+
+		nbLettersFound = checkGuess(playerGuessChar);
+		printGuessResult(playerGuessChar);
+
+		++m_iCurrentTry;
+	}
+}
+
+void FBullCowGame::readString(std::string &output, const char* prompt) {
+	std::cout << prompt;
+	std::getline(std::cin, output);
+}
+
+void FBullCowGame::printGuessResult(std::string playerGuessChar) {
+	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
+}
+
 unsigned int FBullCowGame::getCurrentTry() {
 	return m_iCurrentTry;
 }
@@ -33,4 +60,13 @@ unsigned int FBullCowGame::getMaxTries() {
 
 int FBullCowGame::checkGuess(std::string guess) {
 	return guess == m_sWordToFind ? m_iMaxTries : 0;
+}
+
+bool FBullCowGame::askIfContinue() {
+	std::string continueAnswer;
+	do {
+		readString(continueAnswer, "Continue playing(y/yes/n/no)?");
+	} while (continueAnswer[0] != 'y' && continueAnswer[0] != 'n');
+
+	return continueAnswer[0] == 'y';
 }
