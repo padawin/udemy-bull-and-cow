@@ -32,6 +32,7 @@ void FBullCowGame::play() {
 
 	while (nbLettersFound < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
 		// get user's guess
+		// @TODO check guess is correct
 		readString(
 			playerGuessChar,
 			"What is your guess? "
@@ -42,6 +43,8 @@ void FBullCowGame::play() {
 
 		++m_iCurrentTry;
 	}
+
+	// @TODO print game summary
 }
 
 void FBullCowGame::readString(std::string &output, const char* prompt) const {
