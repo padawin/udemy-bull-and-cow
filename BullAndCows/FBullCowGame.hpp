@@ -9,15 +9,14 @@ class FBullCowGame {
 	void welcome();
 	void reset();
 	void play();
-	unsigned int getCurrentTry();
-	unsigned int getMaxTries();
-	int checkGuess(std::string guess);
-	void getGuessResult();
-	bool askIfContinue();
+	unsigned int getCurrentTry() const;
+	unsigned int getMaxTries() const;
+	int checkGuess(std::string guess) const;
+	bool askIfContinue() const;
 
 	private:
-	void readString(std::string &output, const char* prompt);
-	void printGuessResult(std::string playerGuessChar);
+	void readString(std::string &output, const char* prompt) const;
+	void printGuessResult(std::string playerGuessChar) const;
 
 	std::string m_sWordToFind;
 	unsigned int m_iLengthWord;

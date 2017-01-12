@@ -1,8 +1,8 @@
 #include "FBullCowGame.hpp"
 #include <iostream>
 
-unsigned int FBullCowGame::getCurrentTry() { return m_iCurrentTry; }
-unsigned int FBullCowGame::getMaxTries() { return m_iMaxTries; }
+unsigned int FBullCowGame::getCurrentTry() const { return m_iCurrentTry; }
+unsigned int FBullCowGame::getMaxTries() const { return m_iMaxTries; }
 
 FBullCowGame::FBullCowGame() {
 	reset();
@@ -44,20 +44,20 @@ void FBullCowGame::play() {
 	}
 }
 
-void FBullCowGame::readString(std::string &output, const char* prompt) {
+void FBullCowGame::readString(std::string &output, const char* prompt) const {
 	std::cout << prompt;
 	std::getline(std::cin, output);
 }
 
-void FBullCowGame::printGuessResult(std::string playerGuessChar) {
+void FBullCowGame::printGuessResult(std::string playerGuessChar) const {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
 }
 
-int FBullCowGame::checkGuess(std::string guess) {
+int FBullCowGame::checkGuess(std::string guess) const {
 	return guess == m_sWordToFind ? m_iMaxTries : 0;
 }
 
-bool FBullCowGame::askIfContinue() {
+bool FBullCowGame::askIfContinue() const {
 	std::string continueAnswer;
 	do {
 		readString(continueAnswer, "Continue playing(y/yes/n/no)?");
