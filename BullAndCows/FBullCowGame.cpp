@@ -1,6 +1,8 @@
 #include "FBullCowGame.hpp"
 #include <iostream>
 
+using FString = std::string;
+
 unsigned int FBullCowGame::getCurrentTry() const { return m_iCurrentTry; }
 unsigned int FBullCowGame::getMaxTries() const { return m_iMaxTries; }
 
@@ -28,7 +30,7 @@ void FBullCowGame::reset() {
 
 void FBullCowGame::play() {
 	unsigned int nbLettersFound = 0;
-	std::string playerGuessChar = "";
+	FString playerGuessChar = "";
 
 	while (nbLettersFound < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
 		// get user's guess
@@ -47,21 +49,21 @@ void FBullCowGame::play() {
 	// @TODO print game summary
 }
 
-void FBullCowGame::readString(std::string &output, const char* prompt) const {
+void FBullCowGame::readString(FString &output, const char* prompt) const {
 	std::cout << prompt;
 	std::getline(std::cin, output);
 }
 
-void FBullCowGame::printGuessResult(std::string playerGuessChar) const {
+void FBullCowGame::printGuessResult(FString playerGuessChar) const {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
 }
 
-int FBullCowGame::checkGuess(std::string guess) const {
+int FBullCowGame::checkGuess(FString guess) const {
 	return guess == m_sWordToFind ? m_iMaxTries : 0;
 }
 
 bool FBullCowGame::askIfContinue() const {
-	std::string continueAnswer;
+	FString continueAnswer;
 	do {
 		readString(continueAnswer, "Continue playing (y/yes/n/no)? ");
 	} while (continueAnswer[0] != 'y' && continueAnswer[0] != 'n');
