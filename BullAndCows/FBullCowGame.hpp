@@ -4,6 +4,7 @@
 #include <string>
 
 using FString = std::string;
+using int32 = int;
 
 class FBullCowGame {
 	public:
@@ -11,17 +12,17 @@ class FBullCowGame {
 	void welcome();
 	void reset();
 	void play();
-	unsigned int getCurrentTry() const;
-	unsigned int getMaxTries() const;
-	int checkGuess(FString guess) const;
+	int32 getCurrentTry() const;
+	int32 getMaxTries() const;
+	int32 checkGuess(FString guess) const;
 
 	private:
 	void printGuessResult(FString playerGuessChar) const;
 
 	FString m_sWordToFind;
-	unsigned int m_iLengthWord;
-	unsigned int m_iMaxTries;
-	unsigned int m_iCurrentTry;
+	int32 m_iLengthWord;
+	int32 m_iMaxTries;
+	int32 m_iCurrentTry;
 };
 
 #endif

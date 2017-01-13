@@ -4,8 +4,8 @@
 
 using FString = std::string;
 
-unsigned int FBullCowGame::getCurrentTry() const { return m_iCurrentTry; }
-unsigned int FBullCowGame::getMaxTries() const { return m_iMaxTries; }
+int32 FBullCowGame::getCurrentTry() const { return m_iCurrentTry; }
+int32 FBullCowGame::getMaxTries() const { return m_iMaxTries; }
 
 FBullCowGame::FBullCowGame() {
 	reset();
@@ -30,7 +30,7 @@ void FBullCowGame::reset() {
 }
 
 void FBullCowGame::play() {
-	unsigned int nbLettersFound = 0;
+	int32 nbLettersFound = 0;
 	FString playerGuessChar = "";
 
 	while (nbLettersFound < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
@@ -54,6 +54,6 @@ void FBullCowGame::printGuessResult(FString playerGuessChar) const {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
 }
 
-int FBullCowGame::checkGuess(FString guess) const {
+int32 FBullCowGame::checkGuess(FString guess) const {
 	return guess == m_sWordToFind ? m_iMaxTries : 0;
 }
