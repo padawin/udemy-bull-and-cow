@@ -63,7 +63,7 @@ int FBullCowGame::checkGuess(std::string guess) const {
 bool FBullCowGame::askIfContinue() const {
 	std::string continueAnswer;
 	do {
-		readString(continueAnswer, "Continue playing(y/yes/n/no)?");
+		readString(continueAnswer, "Continue playing (y/yes/n/no)? ");
 	} while (continueAnswer[0] != 'y' && continueAnswer[0] != 'n');
 
 	return continueAnswer[0] == 'y';
