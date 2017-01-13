@@ -14,10 +14,8 @@ class FBullCowGame {
 	unsigned int getCurrentTry() const;
 	unsigned int getMaxTries() const;
 	int checkGuess(FString guess) const;
-	bool askIfContinue() const;
 
 	private:
-	void readString(FString &output, const char* prompt) const;
 	void printGuessResult(FString playerGuessChar) const;
 
 	FString m_sWordToFind;

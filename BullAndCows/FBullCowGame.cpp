@@ -49,24 +49,10 @@ void FBullCowGame::play() {
 	// @TODO print game summary
 }
 
-void FBullCowGame::readString(FString &output, const char* prompt) const {
-	std::cout << prompt;
-	std::getline(std::cin, output);
-}
-
 void FBullCowGame::printGuessResult(FString playerGuessChar) const {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
 }
 
 int FBullCowGame::checkGuess(FString guess) const {
 	return guess == m_sWordToFind ? m_iMaxTries : 0;
-}
-
-bool FBullCowGame::askIfContinue() const {
-	FString continueAnswer;
-	do {
-		readString(continueAnswer, "Continue playing (y/yes/n/no)? ");
-	} while (continueAnswer[0] != 'y' && continueAnswer[0] != 'n');
-
-	return continueAnswer[0] == 'y';
 }
