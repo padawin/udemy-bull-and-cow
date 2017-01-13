@@ -1,4 +1,5 @@
 #include "FBullCowGame.hpp"
+#include "utils.hpp"
 #include <iostream>
 
 using FString = std::string;
@@ -35,7 +36,7 @@ void FBullCowGame::play() {
 	while (nbLettersFound < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
 		// get user's guess
 		// @TODO check guess is correct
-		readString(
+		utils::readString(
 			playerGuessChar,
 			"What is your guess? "
 		);
