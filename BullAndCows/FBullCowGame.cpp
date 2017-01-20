@@ -30,10 +30,10 @@ void FBullCowGame::reset() {
 }
 
 void FBullCowGame::play() {
-	int32 nbLettersFound = 0;
+	S_BullCowCount nbLettersFound;
 	FString playerGuessChar = "";
 
-	while (nbLettersFound < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
+	while (nbLettersFound.bulls < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
 		// get user's guess
 		// @TODO check guess is correct
 		utils::readString(
@@ -54,6 +54,8 @@ void FBullCowGame::printGuessResult(FString playerGuessChar) const {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
 }
 
-int32 FBullCowGame::checkGuess(FString guess) const {
-	return guess == m_sWordToFind ? m_iMaxTries : 0;
+S_BullCowCount FBullCowGame::checkGuess(FString guess) const {
+	S_BullCowCount result;
+	result.bulls = guess == m_sWordToFind ? m_iMaxTries : 0;
+	return result;
 }
