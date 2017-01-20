@@ -22,7 +22,7 @@ class FBullCowGame {
 	S_BullCowCount checkGuess(FString guess) const;
 
 	private:
-	void printGuessResult(FString playerGuessChar) const;
+	void printGuessResult(FString playerGuessChar, S_BullCowCount result) const;
 
 	FString m_sWordToFind;
 	int32 m_iLengthWord;

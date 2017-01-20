@@ -42,7 +42,7 @@ void FBullCowGame::play() {
 		);
 
 		nbLettersFound = checkGuess(playerGuessChar);
-		printGuessResult(playerGuessChar);
+		printGuessResult(playerGuessChar, nbLettersFound);
 
 		++m_iCurrentTry;
 	}
@@ -50,8 +50,10 @@ void FBullCowGame::play() {
 	// @TODO print game summary
 }
 
-void FBullCowGame::printGuessResult(FString playerGuessChar) const {
+void FBullCowGame::printGuessResult(FString playerGuessChar, S_BullCowCount result) const {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
+	std::cout << "you have " << result.bulls << " well placed letters and " <<
+		result.cows << " correct but misplaced letters." << std::endl << std::endl;
 }
 
 S_BullCowCount FBullCowGame::checkGuess(FString guess) const {
