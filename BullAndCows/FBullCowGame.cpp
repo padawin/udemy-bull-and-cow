@@ -58,6 +58,11 @@ void FBullCowGame::printGuessResult(FString playerGuessChar, S_BullCowCount resu
 
 S_BullCowCount FBullCowGame::checkGuess(FString guess) const {
 	S_BullCowCount result;
+	// increment turns number
+	// instanciate return
+	// loop through guess's letters
+	//		compare letter with word to find
+	//		update return value
 	result.bulls = guess == m_sWordToFind ? m_iMaxTries : 0;
 	return result;
 }
