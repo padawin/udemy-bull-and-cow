@@ -6,6 +6,11 @@
 using FString = std::string;
 using int32 = int;
 
+typedef struct {
+	int32 bulls = 0;
+	int32 cows = 0;
+} S_BullCowCount;
+
 class FBullCowGame {
 	public:
 	FBullCowGame();
