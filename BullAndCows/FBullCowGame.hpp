@@ -19,7 +19,7 @@ class FBullCowGame {
 	void play();
 	int32 getCurrentTry() const;
 	int32 getMaxTries() const;
-	S_BullCowCount checkGuess(FString guess) const;
+	S_BullCowCount submitGuess(FString guess);
 
 	private:
 	void printGuessResult(FString playerGuessChar, S_BullCowCount result) const;

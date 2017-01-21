@@ -41,7 +41,7 @@ void FBullCowGame::play() {
 			"What is your guess? "
 		);
 
-		nbLettersFound = checkGuess(playerGuessChar);
+		nbLettersFound = submitGuess(playerGuessChar);
 		printGuessResult(playerGuessChar, nbLettersFound);
 
 		++m_iCurrentTry;
@@ -56,7 +56,7 @@ void FBullCowGame::printGuessResult(FString playerGuessChar, S_BullCowCount resu
 		result.cows << " correct but misplaced letters." << std::endl << std::endl;
 }
 
-S_BullCowCount FBullCowGame::checkGuess(FString guess) const {
+S_BullCowCount FBullCowGame::submitGuess(FString guess) {
 	S_BullCowCount result;
 	// increment turns number
 	// instanciate return
