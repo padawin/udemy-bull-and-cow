@@ -25,7 +25,7 @@ void FBullCowGame::welcome() {
 void FBullCowGame::reset() {
 	m_iMaxTries = 15;
 	m_iCurrentTry = 1;
-	m_sWordToFind = "Jukebox";
+	m_sWordToFind = "jukebox";
 	m_iLengthWord = m_sWordToFind.length();
 }
 
