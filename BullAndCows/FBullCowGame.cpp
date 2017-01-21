@@ -58,11 +58,40 @@ void FBullCowGame::printGuessResult(FString playerGuessChar, S_BullCowCount resu
 
 S_BullCowCount FBullCowGame::submitGuess(FString guess) {
 	S_BullCowCount result;
-	// increment turns number
-	// instanciate return
+	int32 guessLength, currentChar, cowChar, bullLettersFound, cowLettersFound;
+
+	++m_iCurrentTry;
+	bullLettersFound = 0;
+	cowLettersFound = 0;
+	guessLength = guess.length();
 	// loop through guess's letters
-	//		compare letter with word to find
-	//		update return value
-	result.bulls = guess == m_sWordToFind ? m_iMaxTries : 0;
+	for (currentChar = 0; currentChar < guessLength; ++currentChar) {
+		if (currentChar < m_iLengthWord && guess[currentChar] == m_sWordToFind[currentChar]) {
+			// if the guess's current char is the same as in the word to find,
+			// increase the number of bulls
+			// Also, flag the current index as being found (for the cows)
+			result.bulls++;
+			bullLettersFound |= 1 << currentChar;
+			if (cowLettersFound && (1 << currentChar)) {
+				cowLettersFound &= ~(1 << currentChar);
+				result.cows--;
+			}
+		}
+		else {
+			for (cowChar = 0; cowChar < m_iLengthWord; ++cowChar) {
+				// if the letter is in the word to find but has not already
+				// been found at the good place (to avoid repetition of bulls as
+				// cows) and not been found at the wrong place already (to avoid
+				// repetition of cows)
+				if (guess[currentChar] == m_sWordToFind[cowChar]
+					&& !(bullLettersFound & (1 << cowChar))
+					&& !(cowLettersFound & (1 << cowChar))
+				) {
+					result.cows++;
+					cowLettersFound |= 1 << cowChar;
+				}
+			}
+		}
+	}
 	return result;
 }
