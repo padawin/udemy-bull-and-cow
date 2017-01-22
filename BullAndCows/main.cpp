@@ -7,8 +7,6 @@ bool askIfContinue();
 
 int main() {
 	FBullCowGame game;
-	game.reset();
-	game.welcome();
 	bool continuePlaying = true;
 	do {
 		game.play();

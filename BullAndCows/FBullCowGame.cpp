@@ -8,10 +8,9 @@ int32 FBullCowGame::getCurrentTry() const { return m_iCurrentTry; }
 int32 FBullCowGame::getMaxTries() const { return m_iMaxTries; }
 
 FBullCowGame::FBullCowGame() {
-	reset();
 }
 
-void FBullCowGame::welcome() {
+void FBullCowGame::_welcome() {
 	std::cout << "Welcome to Bulls and Cows" << std::endl;
 	std::cout << "I am thinking of a word of " << m_iLengthWord << " letters." << std::endl;
 	std::cout << "You have " << m_iMaxTries << " turns to find it." << std::endl;
@@ -22,7 +21,7 @@ void FBullCowGame::welcome() {
 	std::cout << std::endl;
 }
 
-void FBullCowGame::reset() {
+void FBullCowGame::_reset() {
 	m_iMaxTries = 15;
 	m_iCurrentTry = 1;
 	_generateWord();
@@ -36,6 +35,8 @@ void FBullCowGame::_generateWord() {
 void FBullCowGame::play() {
 	S_BullCowCount nbLettersFound;
 	FString playerGuessChar = "";
+	_reset();
+	_welcome();
 
 	while (nbLettersFound.bulls < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
 		// get user's guess
