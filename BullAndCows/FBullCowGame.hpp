@@ -31,11 +31,13 @@ class FBullCowGame {
 	bool _checkWordIsLowerCaseOnly(FString word) const;
 	void _printWonGame() const ;
 	void _printLostGame() const;
+	bool _isGameWon() const;
 
 	FString m_sWordToFind;
 	int32 m_iLengthWord;
 	int32 m_iMaxTries;
 	int32 m_iCurrentTry;
+	bool m_bGameWon;
 };
 
 #endif

@@ -13,6 +13,7 @@ FBullCowGame::FBullCowGame() {
 void FBullCowGame::_reset() {
 	m_iMaxTries = 15;
 	m_iCurrentTry = 1;
+	m_bGameWon = false;
 	_generateWord();
 }
 
@@ -38,7 +39,7 @@ void FBullCowGame::play() {
 	_reset();
 	_welcome();
 
-	while (nbLettersFound.bulls < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
+	while (!_isGameWon() && getCurrentTry() <= getMaxTries()) {
 		// get user's guess
 		utils::readString(
 			playerGuessChar,
@@ -56,7 +57,7 @@ void FBullCowGame::play() {
 		}
 	}
 
-	if (nbLettersFound.bulls == m_iLengthWord) {
+	if (_isGameWon()) {
 		_printWonGame();
 	}
 	else {
@@ -146,6 +147,8 @@ S_BullCowCount FBullCowGame::_submitGuess(FString guess) {
 			}
 		}
 	}
+
+	m_bGameWon = result.bulls == m_iLengthWord;
 	return result;
 }
 
@@ -161,4 +164,8 @@ void FBullCowGame::_printWonGame() const {
 
 void FBullCowGame::_printLostGame() const {
 	std::cout << "Too bad, you used all your chances to find my word..." << std::endl;
+}
+
+bool FBullCowGame::_isGameWon() const {
+	return m_bGameWon;
 }
