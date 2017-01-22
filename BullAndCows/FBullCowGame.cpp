@@ -46,7 +46,10 @@ void FBullCowGame::play() {
 			"What is your guess? "
 		);
 		E_WorldValidity valid = _checkGuessValidity(playerGuessChar);
-		if (valid == E_WorldValidity::WORD_OK) {
+		if (valid != E_WorldValidity::WORD_OK) {
+			_reportError(valid);
+		}
+		else {
 			nbLettersFound = submitGuess(playerGuessChar);
 			_printGuessResult(playerGuessChar, nbLettersFound);
 
@@ -55,6 +58,19 @@ void FBullCowGame::play() {
 	}
 
 	// @TODO print game summary
+}
+
+void FBullCowGame::_reportError(E_WorldValidity status) {
+	switch (status) {
+		case E_WorldValidity::INVALID_LENGTH:
+			std::cout << "Your guess must have a length of " << m_iLengthWord << " characters" << std::endl;
+			break;
+		case E_WorldValidity::INVALID_CHAR:
+			std::cout << "Your guess must contain only lower case letters" << std::endl;
+			break;
+		default:
+			break;
+	}
 }
 
 E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) {

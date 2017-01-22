@@ -27,6 +27,7 @@ class FBullCowGame {
 	void _printGuessResult(FString playerGuessChar, S_BullCowCount result) const;
 	void _generateWord();
 	E_WorldValidity _checkGuessValidity(FString guess);
+	void _reportError(E_WorldValidity status);
 
 	FString m_sWordToFind;
 	int32 m_iLengthWord;
