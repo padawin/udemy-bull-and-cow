@@ -45,14 +45,35 @@ void FBullCowGame::play() {
 			playerGuessChar,
 			"What is your guess? "
 		);
+		E_WorldValidity valid = _checkGuessValidity(playerGuessChar);
+		if (valid == E_WorldValidity::WORD_OK) {
+			nbLettersFound = submitGuess(playerGuessChar);
+			_printGuessResult(playerGuessChar, nbLettersFound);
 
-		nbLettersFound = submitGuess(playerGuessChar);
-		_printGuessResult(playerGuessChar, nbLettersFound);
-
-		++m_iCurrentTry;
+			++m_iCurrentTry;
+		}
 	}
 
 	// @TODO print game summary
+}
+
+E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) {
+	int32 guessLength;
+
+	guessLength = guess.length();
+	if (guessLength != m_iLengthWord) {
+		return E_WorldValidity::INVALID_LENGTH;
+	}
+	else {
+		int32 currentChar;
+		for (currentChar = 0; currentChar < guessLength; ++currentChar) {
+			if (guess[currentChar] < 'a' || 'z' < guess[currentChar]) {
+				return E_WorldValidity::INVALID_CHAR;
+			}
+		}
+
+		return E_WorldValidity::WORD_OK;
+	}
 }
 
 void FBullCowGame::_printGuessResult(FString playerGuessChar, S_BullCowCount result) const {
