@@ -21,7 +21,7 @@ void FBullCowGame::_generateWord() {
 	m_iLengthWord = m_sWordToFind.length();
 }
 
-void FBullCowGame::_welcome() {
+void FBullCowGame::_welcome() const {
 	std::cout << "Welcome to Bulls and Cows" << std::endl;
 	std::cout << "I am thinking of a word of " << m_iLengthWord << " letters." << std::endl;
 	std::cout << "You have " << m_iMaxTries << " turns to find it." << std::endl;
@@ -59,7 +59,7 @@ void FBullCowGame::play() {
 	// @TODO print game summary
 }
 
-E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) {
+E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) const {
 	int32 guessLength;
 
 	guessLength = guess.length();
@@ -74,7 +74,7 @@ E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) {
 	}
 }
 
-bool FBullCowGame::_checkWordIsLowerCaseOnly(FString word) {
+bool FBullCowGame::_checkWordIsLowerCaseOnly(FString word) const {
 	int32 currentChar, wordLength;
 
 	wordLength = word.length();
@@ -87,7 +87,7 @@ bool FBullCowGame::_checkWordIsLowerCaseOnly(FString word) {
 	return true;
 }
 
-void FBullCowGame::_reportError(E_WorldValidity status) {
+void FBullCowGame::_reportError(E_WorldValidity status) const {
 	switch (status) {
 		case E_WorldValidity::INVALID_LENGTH:
 			std::cout << "Your guess must have a length of " << m_iLengthWord << " characters" << std::endl;
@@ -100,7 +100,7 @@ void FBullCowGame::_reportError(E_WorldValidity status) {
 	}
 }
 
-S_BullCowCount FBullCowGame::submitGuess(FString guess) {
+S_BullCowCount FBullCowGame::_submitGuess(FString guess) {
 	S_BullCowCount result;
 	// bullLettersFound and cowLettersFound will have 1 bit per letter to know
 	// if they have been found as bull or cow. However this limit the size of

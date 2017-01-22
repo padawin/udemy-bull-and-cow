@@ -23,12 +23,12 @@ class FBullCowGame {
 
 	private:
 	void _reset();
-	void _welcome();
+	void _welcome() const;
 	void _printGuessResult(FString playerGuessChar, S_BullCowCount result) const;
 	void _generateWord();
-	E_WorldValidity _checkGuessValidity(FString guess);
-	void _reportError(E_WorldValidity status);
-	bool _checkWordIsLowerCaseOnly(FString word);
+	E_WorldValidity _checkGuessValidity(FString guess) const;
+	void _reportError(E_WorldValidity status) const;
+	bool _checkWordIsLowerCaseOnly(FString word) const;
 
 	FString m_sWordToFind;
 	int32 m_iLengthWord;
