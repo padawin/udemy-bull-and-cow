@@ -11,6 +11,8 @@ typedef struct {
 	int32 cows = 0;
 } S_BullCowCount;
 
+enum class E_WorldValidity {INVALID_LENGTH, INVALID_CHAR, WORD_OK};
+
 class FBullCowGame {
 	public:
 	FBullCowGame();
@@ -24,6 +26,9 @@ class FBullCowGame {
 	void _welcome();
 	void _printGuessResult(FString playerGuessChar, S_BullCowCount result) const;
 	void _generateWord();
+	E_WorldValidity _checkGuessValidity(FString guess);
+	void _reportError(E_WorldValidity status);
+	bool _checkWordIsLowerCaseOnly(FString word);
 
 	FString m_sWordToFind;
 	int32 m_iLengthWord;

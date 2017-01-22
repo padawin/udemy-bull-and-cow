@@ -45,14 +45,60 @@ void FBullCowGame::play() {
 			playerGuessChar,
 			"What is your guess? "
 		);
+		E_WorldValidity valid = _checkGuessValidity(playerGuessChar);
+		if (valid != E_WorldValidity::WORD_OK) {
+			_reportError(valid);
+		}
+		else {
+			nbLettersFound = submitGuess(playerGuessChar);
+			_printGuessResult(playerGuessChar, nbLettersFound);
 
-		nbLettersFound = submitGuess(playerGuessChar);
-		_printGuessResult(playerGuessChar, nbLettersFound);
-
-		++m_iCurrentTry;
+			++m_iCurrentTry;
+		}
 	}
 
 	// @TODO print game summary
+}
+
+void FBullCowGame::_reportError(E_WorldValidity status) {
+	switch (status) {
+		case E_WorldValidity::INVALID_LENGTH:
+			std::cout << "Your guess must have a length of " << m_iLengthWord << " characters" << std::endl;
+			break;
+		case E_WorldValidity::INVALID_CHAR:
+			std::cout << "Your guess must contain only lower case letters" << std::endl;
+			break;
+		default:
+			break;
+	}
+}
+
+E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) {
+	int32 guessLength;
+
+	guessLength = guess.length();
+	if (guessLength != m_iLengthWord) {
+		return E_WorldValidity::INVALID_LENGTH;
+	}
+	else if (!_checkWordIsLowerCaseOnly(guess)) {
+		return E_WorldValidity::INVALID_CHAR;
+	}
+	else {
+		return E_WorldValidity::WORD_OK;
+	}
+}
+
+bool FBullCowGame::_checkWordIsLowerCaseOnly(FString word) {
+	int32 currentChar, wordLength;
+
+	wordLength = word.length();
+	for (currentChar = 0; currentChar < wordLength; ++currentChar) {
+		if (word[currentChar] < 'a' || 'z' < word[currentChar]) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 void FBullCowGame::_printGuessResult(FString playerGuessChar, S_BullCowCount result) const {
@@ -67,21 +113,20 @@ S_BullCowCount FBullCowGame::submitGuess(FString guess) {
 	// if they have been found as bull or cow. However this limit the size of
 	// the words to 32 (for the 32bits size of the integers), but that is
 	// plenty for a word...
-	int32 guessLength, currentChar, cowChar, bullLettersFound, cowLettersFound;
+	int32 currentChar, cowChar, bullLettersFound, cowLettersFound;
 
 	++m_iCurrentTry;
 	bullLettersFound = 0;
 	cowLettersFound = 0;
-	guessLength = guess.length();
 	// loop through guess's letters
-	for (currentChar = 0; currentChar < guessLength; ++currentChar) {
-		if (currentChar < m_iLengthWord && guess[currentChar] == m_sWordToFind[currentChar]) {
+	for (currentChar = 0; currentChar < m_iLengthWord; ++currentChar) {
+		if (guess[currentChar] == m_sWordToFind[currentChar]) {
 			// if the guess's current char is the same as in the word to find,
 			// increase the number of bulls
 			// Also, flag the current index as being found (for the cows)
 			result.bulls++;
 			bullLettersFound |= 1 << currentChar;
-			if (cowLettersFound && (1 << currentChar)) {
+			if (cowLettersFound & (1 << currentChar)) {
 				cowLettersFound &= ~(1 << currentChar);
 				result.cows--;
 			}
