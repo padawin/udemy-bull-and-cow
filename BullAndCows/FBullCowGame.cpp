@@ -40,7 +40,6 @@ void FBullCowGame::play() {
 
 	while (nbLettersFound.bulls < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
 		// get user's guess
-		// @TODO check guess is correct
 		utils::readString(
 			playerGuessChar,
 			"What is your guess? "
