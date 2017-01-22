@@ -19,21 +19,25 @@ class FBullCowGame {
 	void play();
 	int32 getCurrentTry() const;
 	int32 getMaxTries() const;
-	S_BullCowCount submitGuess(FString guess);
 
 	private:
 	void _reset();
-	void _welcome();
+	void _welcome() const;
 	void _printGuessResult(FString playerGuessChar, S_BullCowCount result) const;
 	void _generateWord();
-	E_WorldValidity _checkGuessValidity(FString guess);
-	void _reportError(E_WorldValidity status);
-	bool _checkWordIsLowerCaseOnly(FString word);
+	E_WorldValidity _checkGuessValidity(FString guess) const;
+	S_BullCowCount _submitGuess(FString guess);
+	void _reportError(E_WorldValidity status) const;
+	bool _checkWordIsLowerCaseOnly(FString word) const;
+	void _printWonGame() const ;
+	void _printLostGame() const;
+	bool _isGameWon() const;
 
 	FString m_sWordToFind;
 	int32 m_iLengthWord;
 	int32 m_iMaxTries;
 	int32 m_iCurrentTry;
+	bool m_bGameWon;
 };
 
 #endif
