@@ -58,6 +58,10 @@ void FBullCowGame::printGuessResult(FString playerGuessChar, S_BullCowCount resu
 
 S_BullCowCount FBullCowGame::submitGuess(FString guess) {
 	S_BullCowCount result;
+	// bullLettersFound and cowLettersFound will have 1 bit per letter to know
+	// if they have been found as bull or cow. However this limit the size of
+	// the words to 32 (for the 32bits size of the integers), but that is
+	// plenty for a word...
 	int32 guessLength, currentChar, cowChar, bullLettersFound, cowLettersFound;
 
 	++m_iCurrentTry;
