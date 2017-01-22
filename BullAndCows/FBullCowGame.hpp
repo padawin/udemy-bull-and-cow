@@ -29,6 +29,8 @@ class FBullCowGame {
 	S_BullCowCount _submitGuess(FString guess);
 	void _reportError(E_WorldValidity status) const;
 	bool _checkWordIsLowerCaseOnly(FString word) const;
+	void _printWonGame() const ;
+	void _printLostGame() const;
 
 	FString m_sWordToFind;
 	int32 m_iLengthWord;

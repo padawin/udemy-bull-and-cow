@@ -56,6 +56,12 @@ void FBullCowGame::play() {
 		}
 	}
 
+	if (nbLettersFound.bulls == m_iLengthWord) {
+		_printWonGame();
+	}
+	else {
+		_printLostGame();
+	}
 	// @TODO print game summary
 }
 
@@ -147,4 +153,12 @@ void FBullCowGame::_printGuessResult(FString playerGuessChar, S_BullCowCount res
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
 	std::cout << "you have " << result.bulls << " well placed letters and " <<
 		result.cows << " correct but misplaced letters." << std::endl << std::endl;
+}
+
+void FBullCowGame::_printWonGame() const {
+	std::cout << "Congratulation! you found my word!" << std::endl;
+}
+
+void FBullCowGame::_printLostGame() const {
+	std::cout << "Too bad, you used all your chances to find my word..." << std::endl;
 }
