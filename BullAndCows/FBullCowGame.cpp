@@ -126,7 +126,7 @@ S_BullCowCount FBullCowGame::submitGuess(FString guess) {
 			// Also, flag the current index as being found (for the cows)
 			result.bulls++;
 			bullLettersFound |= 1 << currentChar;
-			if (cowLettersFound && (1 << currentChar)) {
+			if (cowLettersFound & (1 << currentChar)) {
 				cowLettersFound &= ~(1 << currentChar);
 				result.cows--;
 			}
