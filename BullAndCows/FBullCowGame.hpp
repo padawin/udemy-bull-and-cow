@@ -6,6 +6,11 @@
 using FString = std::string;
 using int32 = int;
 
+typedef struct {
+	int32 bulls = 0;
+	int32 cows = 0;
+} S_BullCowCount;
+
 class FBullCowGame {
 	public:
 	FBullCowGame();
@@ -14,10 +19,10 @@ class FBullCowGame {
 	void play();
 	int32 getCurrentTry() const;
 	int32 getMaxTries() const;
-	int32 checkGuess(FString guess) const;
+	S_BullCowCount submitGuess(FString guess);
 
 	private:
-	void printGuessResult(FString playerGuessChar) const;
+	void printGuessResult(FString playerGuessChar, S_BullCowCount result) const;
 
 	FString m_sWordToFind;
 	int32 m_iLengthWord;

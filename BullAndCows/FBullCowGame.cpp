@@ -25,15 +25,15 @@ void FBullCowGame::welcome() {
 void FBullCowGame::reset() {
 	m_iMaxTries = 15;
 	m_iCurrentTry = 1;
-	m_sWordToFind = "Jukebox";
+	m_sWordToFind = "jukebox";
 	m_iLengthWord = m_sWordToFind.length();
 }
 
 void FBullCowGame::play() {
-	int32 nbLettersFound = 0;
+	S_BullCowCount nbLettersFound;
 	FString playerGuessChar = "";
 
-	while (nbLettersFound < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
+	while (nbLettersFound.bulls < m_iLengthWord && getCurrentTry() <= getMaxTries()) {
 		// get user's guess
 		// @TODO check guess is correct
 		utils::readString(
@@ -41,8 +41,8 @@ void FBullCowGame::play() {
 			"What is your guess? "
 		);
 
-		nbLettersFound = checkGuess(playerGuessChar);
-		printGuessResult(playerGuessChar);
+		nbLettersFound = submitGuess(playerGuessChar);
+		printGuessResult(playerGuessChar, nbLettersFound);
 
 		++m_iCurrentTry;
 	}
@@ -50,10 +50,48 @@ void FBullCowGame::play() {
 	// @TODO print game summary
 }
 
-void FBullCowGame::printGuessResult(FString playerGuessChar) const {
+void FBullCowGame::printGuessResult(FString playerGuessChar, S_BullCowCount result) const {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
+	std::cout << "you have " << result.bulls << " well placed letters and " <<
+		result.cows << " correct but misplaced letters." << std::endl << std::endl;
 }
 
-int32 FBullCowGame::checkGuess(FString guess) const {
-	return guess == m_sWordToFind ? m_iMaxTries : 0;
+S_BullCowCount FBullCowGame::submitGuess(FString guess) {
+	S_BullCowCount result;
+	int32 guessLength, currentChar, cowChar, bullLettersFound, cowLettersFound;
+
+	++m_iCurrentTry;
+	bullLettersFound = 0;
+	cowLettersFound = 0;
+	guessLength = guess.length();
+	// loop through guess's letters
+	for (currentChar = 0; currentChar < guessLength; ++currentChar) {
+		if (currentChar < m_iLengthWord && guess[currentChar] == m_sWordToFind[currentChar]) {
+			// if the guess's current char is the same as in the word to find,
+			// increase the number of bulls
+			// Also, flag the current index as being found (for the cows)
+			result.bulls++;
+			bullLettersFound |= 1 << currentChar;
+			if (cowLettersFound && (1 << currentChar)) {
+				cowLettersFound &= ~(1 << currentChar);
+				result.cows--;
+			}
+		}
+		else {
+			for (cowChar = 0; cowChar < m_iLengthWord; ++cowChar) {
+				// if the letter is in the word to find but has not already
+				// been found at the good place (to avoid repetition of bulls as
+				// cows) and not been found at the wrong place already (to avoid
+				// repetition of cows)
+				if (guess[currentChar] == m_sWordToFind[cowChar]
+					&& !(bullLettersFound & (1 << cowChar))
+					&& !(cowLettersFound & (1 << cowChar))
+				) {
+					result.cows++;
+					cowLettersFound |= 1 << cowChar;
+				}
+			}
+		}
+	}
+	return result;
 }
