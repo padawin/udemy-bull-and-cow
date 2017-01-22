@@ -28,6 +28,7 @@ class FBullCowGame {
 	void _generateWord();
 	E_WorldValidity _checkGuessValidity(FString guess);
 	void _reportError(E_WorldValidity status);
+	bool _checkWordIsLowerCaseOnly(FString word);
 
 	FString m_sWordToFind;
 	int32 m_iLengthWord;

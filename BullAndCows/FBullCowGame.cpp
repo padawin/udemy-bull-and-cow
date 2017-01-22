@@ -80,16 +80,25 @@ E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) {
 	if (guessLength != m_iLengthWord) {
 		return E_WorldValidity::INVALID_LENGTH;
 	}
+	else if (!_checkWordIsLowerCaseOnly(guess)) {
+		return E_WorldValidity::INVALID_CHAR;
+	}
 	else {
-		int32 currentChar;
-		for (currentChar = 0; currentChar < guessLength; ++currentChar) {
-			if (guess[currentChar] < 'a' || 'z' < guess[currentChar]) {
-				return E_WorldValidity::INVALID_CHAR;
-			}
-		}
-
 		return E_WorldValidity::WORD_OK;
 	}
+}
+
+bool FBullCowGame::_checkWordIsLowerCaseOnly(FString word) {
+	int32 currentChar, wordLength;
+
+	wordLength = word.length();
+	for (currentChar = 0; currentChar < wordLength; ++currentChar) {
+		if (word[currentChar] < 'a' || 'z' < word[currentChar]) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 void FBullCowGame::_printGuessResult(FString playerGuessChar, S_BullCowCount result) const {
