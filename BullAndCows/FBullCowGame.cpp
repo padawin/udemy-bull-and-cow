@@ -113,15 +113,14 @@ S_BullCowCount FBullCowGame::submitGuess(FString guess) {
 	// if they have been found as bull or cow. However this limit the size of
 	// the words to 32 (for the 32bits size of the integers), but that is
 	// plenty for a word...
-	int32 guessLength, currentChar, cowChar, bullLettersFound, cowLettersFound;
+	int32 currentChar, cowChar, bullLettersFound, cowLettersFound;
 
 	++m_iCurrentTry;
 	bullLettersFound = 0;
 	cowLettersFound = 0;
-	guessLength = guess.length();
 	// loop through guess's letters
-	for (currentChar = 0; currentChar < guessLength; ++currentChar) {
-		if (currentChar < m_iLengthWord && guess[currentChar] == m_sWordToFind[currentChar]) {
+	for (currentChar = 0; currentChar < m_iLengthWord; ++currentChar) {
+		if (guess[currentChar] == m_sWordToFind[currentChar]) {
 			// if the guess's current char is the same as in the word to find,
 			// increase the number of bulls
 			// Also, flag the current index as being found (for the cows)
