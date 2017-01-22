@@ -49,7 +49,7 @@ void FBullCowGame::play() {
 			_reportError(valid);
 		}
 		else {
-			nbLettersFound = submitGuess(playerGuessChar);
+			nbLettersFound = _submitGuess(playerGuessChar);
 			_printGuessResult(playerGuessChar, nbLettersFound);
 
 			++m_iCurrentTry;
