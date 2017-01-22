@@ -14,14 +14,14 @@ typedef struct {
 class FBullCowGame {
 	public:
 	FBullCowGame();
-	void welcome();
-	void reset();
 	void play();
 	int32 getCurrentTry() const;
 	int32 getMaxTries() const;
 	S_BullCowCount submitGuess(FString guess);
 
 	private:
+	void _reset();
+	void _welcome();
 	void _printGuessResult(FString playerGuessChar, S_BullCowCount result) const;
 	void _generateWord();
 
