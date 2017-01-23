@@ -30,8 +30,7 @@ class FBullCowGame {
 	void _reportError(E_WorldValidity status) const;
 	bool _checkWordIsLowerCaseOnly(FString word) const;
 	bool _isIsogram(FString word) const;
-	void _printWonGame() const ;
-	void _printLostGame() const;
+	void _printGameSummary() const ;
 	bool _isGameWon() const;
 
 	FString m_sWordToFind;

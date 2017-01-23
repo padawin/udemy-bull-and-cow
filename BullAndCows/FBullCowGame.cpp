@@ -58,12 +58,7 @@ void FBullCowGame::play() {
 		}
 	}
 
-	if (_isGameWon()) {
-		_printWonGame();
-	}
-	else {
-		_printLostGame();
-	}
+	_printGameSummary();
 }
 
 E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) const {
@@ -178,12 +173,13 @@ void FBullCowGame::_printGuessResult(FString playerGuessChar, S_BullCowCount res
 		result.cows << " correct but misplaced letters." << std::endl << std::endl;
 }
 
-void FBullCowGame::_printWonGame() const {
-	std::cout << "Congratulation! you found my word!" << std::endl;
-}
-
-void FBullCowGame::_printLostGame() const {
-	std::cout << "Too bad, you used all your chances to find my word..." << std::endl;
+void FBullCowGame::_printGameSummary() const {
+	if (_isGameWon()) {
+		std::cout << "\nCongratulation! you found my word!\n";
+	}
+	else {
+		std::cout << "Too bad, you used all your chances to find my word..." << std::endl;
+	}
 }
 
 bool FBullCowGame::_isGameWon() const {
