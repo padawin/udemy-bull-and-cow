@@ -64,7 +64,6 @@ void FBullCowGame::play() {
 	else {
 		_printLostGame();
 	}
-	// @TODO print game summary
 }
 
 E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) const {
