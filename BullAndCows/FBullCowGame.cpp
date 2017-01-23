@@ -50,7 +50,9 @@ void FBullCowGame::play() {
 		}
 		else {
 			nbLettersFound = _submitGuess(playerGuessChar);
-			_printGuessResult(playerGuessChar, nbLettersFound);
+			if (!_isGameWon()) {
+				_printGuessResult(playerGuessChar, nbLettersFound);
+			}
 
 			++m_iCurrentTry;
 		}
