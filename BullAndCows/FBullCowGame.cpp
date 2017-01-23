@@ -169,8 +169,8 @@ S_BullCowCount FBullCowGame::_submitGuess(FString guess) {
 
 void FBullCowGame::_printGuessResult(FString playerGuessChar, S_BullCowCount result) const {
 	std::cout << "your guess is: " << playerGuessChar << std::endl << std::endl;
-	std::cout << "you have " << result.bulls << " well placed letters and " <<
-		result.cows << " correct but misplaced letters." << std::endl << std::endl;
+	std::cout << "you have " << result.bulls << " BULLS and " <<
+		result.cows << " COWS." << std::endl << std::endl;
 }
 
 void FBullCowGame::_printGameSummary() const {
