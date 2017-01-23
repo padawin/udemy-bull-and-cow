@@ -75,6 +75,9 @@ E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) const {
 	else if (!_checkWordIsLowerCaseOnly(guess)) {
 		return E_WorldValidity::INVALID_CHAR;
 	}
+	else if (!_isIsogram(guess)) {
+		return E_WorldValidity::NOT_ISOGRAM;
+	}
 	else {
 		return E_WorldValidity::WORD_OK;
 	}
@@ -93,6 +96,29 @@ bool FBullCowGame::_checkWordIsLowerCaseOnly(FString word) const {
 	return true;
 }
 
+bool FBullCowGame::_isIsogram(FString word) const {
+	bool charPresent[26], isIsogram;
+	int32 letter, wordLength;
+
+	for (letter = 'a'; letter <= 'z'; ++letter) {
+		charPresent[letter - 'a'] = false;
+	}
+
+	wordLength = word.length();
+	isIsogram = true;
+	for (letter = 0; letter < wordLength; ++letter) {
+		if (charPresent[word[letter] - 'a'] == true) {
+			isIsogram = false;
+			break;
+		}
+		else {
+			charPresent[word[letter] - 'a'] = true;
+		}
+	}
+
+	return isIsogram;
+}
+
 void FBullCowGame::_reportError(E_WorldValidity status) const {
 	switch (status) {
 		case E_WorldValidity::INVALID_LENGTH:
@@ -100,6 +126,9 @@ void FBullCowGame::_reportError(E_WorldValidity status) const {
 			break;
 		case E_WorldValidity::INVALID_CHAR:
 			std::cout << "Your guess must contain only lower case letters" << std::endl;
+			break;
+		case E_WorldValidity::NOT_ISOGRAM:
+			std::cout << "Your guess must be an isogram (it must not contain twice the same letter)" << std::endl;
 			break;
 		default:
 			break;
@@ -122,26 +151,17 @@ S_BullCowCount FBullCowGame::_submitGuess(FString guess) {
 		if (guess[currentChar] == m_sWordToFind[currentChar]) {
 			// if the guess's current char is the same as in the word to find,
 			// increase the number of bulls
-			// Also, flag the current index as being found (for the cows)
 			result.bulls++;
-			bullLettersFound |= 1 << currentChar;
-			if (cowLettersFound & (1 << currentChar)) {
-				cowLettersFound &= ~(1 << currentChar);
-				result.cows--;
-			}
 		}
 		else {
 			for (cowChar = 0; cowChar < m_iLengthWord; ++cowChar) {
-				// if the letter is in the word to find but has not already
-				// been found at the good place (to avoid repetition of bulls as
-				// cows) and not been found at the wrong place already (to avoid
-				// repetition of cows)
+				// if the letter is in the word to find but not at the same
+				// place ar the currently processed letter (currentChar),
+				// increase the cows
 				if (guess[currentChar] == m_sWordToFind[cowChar]
-					&& !(bullLettersFound & (1 << cowChar))
-					&& !(cowLettersFound & (1 << cowChar))
+					&& cowChar != currentChar
 				) {
 					result.cows++;
-					cowLettersFound |= 1 << cowChar;
 				}
 			}
 		}

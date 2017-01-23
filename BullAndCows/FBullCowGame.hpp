@@ -11,7 +11,7 @@ typedef struct {
 	int32 cows = 0;
 } S_BullCowCount;
 
-enum class E_WorldValidity {INVALID_LENGTH, INVALID_CHAR, WORD_OK};
+enum class E_WorldValidity {INVALID_LENGTH, INVALID_CHAR, NOT_ISOGRAM, WORD_OK};
 
 class FBullCowGame {
 	public:
@@ -29,6 +29,7 @@ class FBullCowGame {
 	S_BullCowCount _submitGuess(FString guess);
 	void _reportError(E_WorldValidity status) const;
 	bool _checkWordIsLowerCaseOnly(FString word) const;
+	bool _isIsogram(FString word) const;
 	void _printWonGame() const ;
 	void _printLostGame() const;
 	bool _isGameWon() const;
