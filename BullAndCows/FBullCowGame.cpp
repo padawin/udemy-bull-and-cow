@@ -4,6 +4,7 @@
 #include <ctype.h>
 
 using FString = std::string;
+using int32 = int;
 
 int32 FBullCowGame::getCurrentTry() const { return m_iCurrentTry; }
 int32 FBullCowGame::getMaxTries() const { return m_iMaxTries; }
