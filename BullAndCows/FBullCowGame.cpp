@@ -1,6 +1,7 @@
 #include "FBullCowGame.hpp"
 #include "utils.hpp"
 #include <iostream>
+#include <ctype.h>
 
 using FString = std::string;
 
@@ -81,7 +82,7 @@ E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) const {
 
 bool FBullCowGame::_checkWordIsLowerCaseOnly(FString word) const {
 	for (auto currentChar : word) {
-		if (currentChar < 'a' || 'z' < currentChar) {
+		if (!islower(currentChar)) {
 			return false;
 		}
 	}
