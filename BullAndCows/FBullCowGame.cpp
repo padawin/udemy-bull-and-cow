@@ -80,11 +80,8 @@ E_WorldValidity FBullCowGame::_checkGuessValidity(FString guess) const {
 }
 
 bool FBullCowGame::_checkWordIsLowerCaseOnly(FString word) const {
-	int32 currentChar, wordLength;
-
-	wordLength = word.length();
-	for (currentChar = 0; currentChar < wordLength; ++currentChar) {
-		if (word[currentChar] < 'a' || 'z' < word[currentChar]) {
+	for (auto currentChar : word) {
+		if (currentChar < 'a' || 'z' < currentChar) {
 			return false;
 		}
 	}
@@ -94,21 +91,20 @@ bool FBullCowGame::_checkWordIsLowerCaseOnly(FString word) const {
 
 bool FBullCowGame::_isIsogram(FString word) const {
 	bool charPresent[26], isIsogram;
-	int32 letter, wordLength;
+	int32 letter;
 
 	for (letter = 'a'; letter <= 'z'; ++letter) {
 		charPresent[letter - 'a'] = false;
 	}
 
-	wordLength = word.length();
 	isIsogram = true;
-	for (letter = 0; letter < wordLength; ++letter) {
-		if (charPresent[word[letter] - 'a'] == true) {
+	for (auto currentChar : word) {
+		if (charPresent[currentChar - 'a'] == true) {
 			isIsogram = false;
 			break;
 		}
 		else {
-			charPresent[word[letter] - 'a'] = true;
+			charPresent[currentChar - 'a'] = true;
 		}
 	}
 
