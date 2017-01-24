@@ -4,6 +4,7 @@
 #include <ctype.h>
 
 using FString = std::string;
+using int32 = int;
 
 int32 FBullCowGame::getCurrentTry() const { return m_iCurrentTry; }
 int32 FBullCowGame::getMaxTries() const { return m_iMaxTries; }
@@ -19,7 +20,23 @@ void FBullCowGame::_reset() {
 }
 
 void FBullCowGame::_generateWord() {
-	m_sWordToFind = "jukebox";
+	int32 nbCandidates = 82;
+	FString candidates[] = {
+		"abolishment", "atmospheric", "backgrounds", "campgrounds", "complainers", "countryside", "dangerously",
+		"disgraceful", "disturbance", "documentary", "facetiously", "fracedinous", "filmography", "fluoridates",
+		"lumberjacks", "misanthropy", "nefariously", "palindromes", "personality", "playgrounds", "playwrights",
+		"precautions", "predictably", "republicans", "semordnilap", "speculation", "stenography", "subordinate",
+		"switzerland", "trampolines", "undesirably", "vouchsafing", "workmanship", "absorptively", "ambidextrous",
+		"bankruptcies", "configurated", "considerably", "demographics", "demonstrably", "exclusionary", "exculpations",
+		"exhaustingly", "flowcharting", "gunpowderish", "housewarming", "hypnotizable", "lexicography", "malnourished",
+		"metalworking", "misconjugate", "overhaulings", "packinghouse", "questionably", "recognizably", "recognisably",
+		"thunderclaps", "unforgivable", "unforgivably", "unprofitable", "unprofitably", "upholstering",
+		"consumptively", "documentarily", "flamethrowing", "fracedinously", "hypnotizables", "metalworkings",
+		"misconjugated", "troublemaking", "subordinately", "unpredictably", "unproblematic", "unsympathized",
+		"ambidextrously", "dermatoglyphic", "undiscoverably", "dermatoglyphics", "hydropneumatics", "uncopyrightable",
+		"uncopyrightables"
+	};
+	m_sWordToFind = candidates[rand() % nbCandidates];
 	m_iLengthWord = m_sWordToFind.length();
 }
 

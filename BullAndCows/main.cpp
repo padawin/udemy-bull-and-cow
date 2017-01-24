@@ -6,6 +6,8 @@ using FString = std::string;
 bool askIfContinue();
 
 int main() {
+	time_t t;
+	srand((unsigned) time(&t));
 	FBullCowGame game;
 	bool continuePlaying = true;
 	do {
