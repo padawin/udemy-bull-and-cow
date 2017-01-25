@@ -1,5 +1,6 @@
 #include "FBullCowGame.hpp"
 #include "utils.hpp"
+#include <stdlib.h>
 
 using FString = std::string;
 
